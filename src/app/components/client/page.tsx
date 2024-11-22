@@ -1,3 +1,4 @@
+// In next js, react components are server components by default and react hooks(useState, useEffect) are client components only. To convert this server component to client we use "use client";
 "use client";
 import React, { useState } from 'react'
 
