@@ -1,23 +1,31 @@
 import type { Metadata } from "next";
+
+// Next js gives us a very easy way to import any google font. Syntax is below & font name can be any.
+import { Rubik } from "next/font/google";
+// We can also use local font.
 import localFont from "next/font/local";
+
 import "./globals.css";
 
 //Components
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 
 
 // layout file can be used to put the sections of the website which are on every page(like navbar and footer).
 
+
+
+// Creating instance of the font and adding other properties to it (Example)
+/*
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+*/
+const rubik = Rubik({ subsets: ['latin'] })
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`${rubik.className}`}>
         <Navbar />
         {children}
       </body>

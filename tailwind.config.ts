@@ -8,10 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      // Adding our own theme color using tailwind CSS, This color will be added to the property name primary.
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+        primary: '#7856ff'
+      }
     },
   },
   plugins: [],
