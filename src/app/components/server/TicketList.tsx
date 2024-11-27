@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
 // Using MongoDb to generate fetch json content
 
@@ -19,7 +20,7 @@ const ticketSchema = new Schema({
 // Creating ticketModel to interact with the documents in the collection.
 const ticketModel = mongoose.models.ticket || mongoose.model('ticket', ticketSchema);
 
-// Connect to DB only once
+// Connecting to Db
 async function connectToDatabase() {
   await mongoose.connect(mongoURI).then(() => {
     console.log('Connected to Db');
