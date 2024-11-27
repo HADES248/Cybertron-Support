@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Link from "next/link";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
 // Using MongoDb to generate fetch json content
@@ -18,10 +19,10 @@ const ticketSchema = new Schema({
 });
 
 // Creating ticketModel to interact with the documents in the collection.
-const ticketModel = mongoose.models.ticket || mongoose.model('ticket', ticketSchema);
+export const ticketModel = mongoose.models.ticket || mongoose.model('ticket', ticketSchema);
 
 // Connecting to Db
-async function connectToDatabase() {
+export async function connectToDatabase() {
   await mongoose.connect(mongoURI).then(() => {
     console.log('Connected to Db');
   }).catch(err => err);
@@ -44,9 +45,13 @@ export default async function TicketList() {
         // Generating dynamic code using tickets array
         tickets.map((ticket) => (
           <div key={ticket.id} className="card my-5">
-            <h3>{ticket.title}</h3>
-            <p>{ticket.body.slice(0, 200)}...</p>
-            <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
+            {/* // Adding link to redirect to ticket details. */}
+            <Link href={`/components/server/${ticket.id}`}>
+              <h3>{ticket.title}</h3>
+              <p>{ticket.body.slice(0, 200)}...</p>
+              <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
+            </Link>
+
           </div>
         ))
       }
