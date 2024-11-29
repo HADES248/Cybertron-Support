@@ -32,6 +32,8 @@ export async function generateStaticParams() {
 // Now in the build of this app all the routes to the specific ticket will be pre-rendered improving speed of the website.
 
 async function getTicket(id) {
+  //imitate delay
+  await new Promise(resolve => setTimeout(resolve, 3000));
   // To get back one document from the ticket collection.
   return await ticketModel.findOne({ id: id }) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()

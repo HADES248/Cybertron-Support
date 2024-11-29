@@ -29,6 +29,8 @@ export async function connectToDatabase() {
 }
 
 async function getTickets() {
+  //imitate delay
+  await new Promise(resolve => setTimeout(resolve, 3000));
   await connectToDatabase();
   // To get all the tickets back
   return await ticketModel.find();
