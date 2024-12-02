@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 
 async function getTicket(id) {
   //imitate delay
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise(resolve => setTimeout(resolve, 1000));
   // To get back one document from the ticket collection.
   return await ticketModel.findOne({ id: id }) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()

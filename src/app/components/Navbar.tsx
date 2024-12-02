@@ -10,7 +10,7 @@ export default function Navbar() {
       {/* Using Link Component of next (as next pre-fetches the page in the background when it sees the link component) */}
       <Link href={'/'}>Dashboard</Link>
       <Link href={'/components/server'}>Tickets</Link>
-      <Link href={'/components/client'}>Count button</Link>
+      <Link href={'/components/client'}>Create</Link>
     </nav>
   )
 }

@@ -14,7 +14,7 @@ export default async function Tickets() {
         </div>
       </nav>
 
-    {/* Creating a suspense component(meaning that only this component will show loading as fallback while the rest of the page is loaded ). */}
+      {/* Creating a suspense component(meaning that only this component will show loading as fallback while the rest of the page is loaded ). */}
       <Suspense fallback={<Loading />}>
         <TicketList />
       </Suspense>
