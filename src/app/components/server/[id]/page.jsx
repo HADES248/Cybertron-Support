@@ -35,7 +35,7 @@ async function getTicket(id) {
   //imitate delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   // To get back one document from the ticket collection.
-  return await ticketModel.findOne({ id: id }) || notFound();
+  return await ticketModel.findById(id) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()
 }
 

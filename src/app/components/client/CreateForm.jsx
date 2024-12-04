@@ -1,4 +1,4 @@
-// In next js, react components are server components by default and react hooks(useState, useEffect) are client components only. To convert this server component to client we use "use client";
+// In next js, react components are server components by default and react hooks(useState, useEffect, useRouter) are client components only. To convert this server component to client we use "use client";
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -17,10 +17,9 @@ export default function CreateForm() {
   const handleSubmit = async (e) => {
     // preventing the default action of clearing the submitted form.
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
 
     const newTicket = {
-      id: "4",
       title,
       body,
       priority,
@@ -41,7 +40,7 @@ export default function CreateForm() {
         setBody('');
         setPriority('low');
         setIsLoading(false);
-
+        
         // Redirecting to all the tickets after the new one added.
         router.push('/components/server');
       }
