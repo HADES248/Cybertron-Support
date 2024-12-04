@@ -1,4 +1,4 @@
-import { ticketModel } from '../../server/TicketList';
+import { ticketModel } from '../../../../db/db';
 
 export async function POST(req) {
 
