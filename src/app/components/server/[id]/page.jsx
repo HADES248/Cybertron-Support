@@ -2,6 +2,7 @@
 
 import { notFound } from "next/navigation";
 import { connectToDatabase, ticketModel } from "../../../../db/db";
+import DeleteTicket from './DeleteTicket';
 
 
 // We can use static rendering this page (using cache of this page for a specified amount of time) to improve website speed & Inhanced SEO and Reduce server load.
@@ -39,7 +40,6 @@ async function getTicket(id) {
   // If the document does not exist we can send a 404 page using this notFound()
 }
 
-
 // we can get the route parameter using params property 
 export default async function TicketDetails({ params }) {
   const route = await params;
@@ -52,6 +52,8 @@ export default async function TicketDetails({ params }) {
       <div className="card">
         <h3>{ticket.title}</h3>
         <small>Created By {ticket.user_email}</small>
+        {/* // Passing the document id as props to client component */}
+        <DeleteTicket id={route.id} />
         <p>{ticket.body}</p>
         <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
       </div>

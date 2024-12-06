@@ -28,7 +28,6 @@ export default async function TicketList() {
               <p>{ticket.body.slice(0, 200)}...</p>
               <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
             </Link>
-
           </div>
         ))
       }
