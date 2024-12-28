@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export default function Home() {
-  console.log('Hello');
   return (
     <main>
       <h2>Dashboard</h2>
