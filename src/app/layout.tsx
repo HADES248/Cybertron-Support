@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 // Next js gives us a very easy way to import any google font. Syntax is below & font name can be any.
 import { Rubik } from "next/font/google";
 // We can also use local font.
-import localFont from "next/font/local";
+
+//import localFont from "next/font/local";
 
 import "./globals.css";
 
@@ -23,6 +24,7 @@ const geistSans = localFont({
   weight: "100 900",
 });
 */
+
 const rubik = Rubik({ subsets: ['latin'] })
 
 
