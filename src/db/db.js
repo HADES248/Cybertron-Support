@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // Using MongoDb to generate fetch json content
 
-const mongoURI = 'mongodb://localhost:27017/Helpdesk';
+const mongoURI = 'mongodb+srv://Shiva:ShivanshSingh@mongodb.3e7nf.mongodb.net/Helpdesk?retryWrites=true&w=majority&appName=MongoDb';
 
 // Define a schema and model for the 'tickets' collection, otherwise we won't be able to use ticket.id, ticket.title etc.
 const Schema = mongoose.Schema;
