@@ -19,12 +19,12 @@ export async function generateStaticParams() {
 
   // mapping thorugh all the documents and storing an array of field "id".
   const id = tickets.map((ticket) => ({
-    id: ticket.id
+    params: { id: ticket.id.toString() }
   }))
 
   // returning the array with revalidation of 60 second(meaning if this api is called again before 60s cache file will be used otherwise api call is made again.)
   return [{
-    params: { id },
+    props: { id },
     revalidate: 60
   }]
 }
