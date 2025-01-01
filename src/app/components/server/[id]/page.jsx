@@ -9,7 +9,7 @@ import DeleteTicket from './DeleteTicket';
 // Now all next js does not have access to all the id to static render this page so we create a function which has access to all the id beforehand.
 
 // this variable is used when we want to return a 404 page if a pre-rendered page does not exist(setting it to false) or next js tries to search for this page incase it exists in Db(running getTicket) and if not then returns 404 page(setting it to true).
-export const dyanmicParams = true;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   // Accessing the Db once
