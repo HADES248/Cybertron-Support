@@ -22,29 +22,42 @@ export async function generateStaticParams() {
     id: ticket.id
   }))
 
+  const params = id;
+
   // returning the array with revalidation of 60 second(meaning if this api is called again before 60s cache file will be used otherwise api call is made again.)
-  return [{
-    props: { id },
-    revalidate: 60
-  }]
+  // return [{
+  //   props: { id },
+  //   revalidate: 60
+  // }]
+
+  return params;
+
 }
 // Now in the build of this app all the routes to the specific ticket will be pre-rendered improving speed of the website.
 
 async function getTicket(id) {
   //imitate delay
   await new Promise(resolve => setTimeout(resolve, 1000));
+
+
+  const ticket = await ticketModel.findById(new mongoose.Types.ObjectId(id));
+  if (!ticket) {
+    notFound();
+  }
+  return ticket
+
   // To get back one document from the ticket collection.
-  return await ticketModel.findById(id) || notFound();
+  // return await ticketModel.findById(id) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()
 }
 
 // we can get the route parameter using params property 
 export default async function TicketDetails({ params }) {
-  const route = await params;
-  if (!route.id) {
+  const { id } = await params;
+  if (!id) {
     notFound(); // handle page missing parameter.
   }
-  const ticket = await getTicket(route.id);
+  const ticket = await getTicket(id);
   return (
     <main>
       <nav>
