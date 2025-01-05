@@ -1,14 +1,17 @@
-import { connectToDatabase, ticketModel } from '../../../db/db'
+//import { connectToDatabase, ticketModel } from '../../../db/db'
 import Link from "next/link";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
 async function getTickets() {
-  //imitate delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  await connectToDatabase();
+  const res = await fetch('http://localhost:3000/components/server/find', {
+    next: {
+      revalidate: 0 // use 0 to opt out of using cache
+    }
+  })
 
-  // To get all the tickets back
-  return await ticketModel.find();
+  const { tickets } = await res.json();
+
+  return tickets;
 }
 
 export default async function TicketList() {

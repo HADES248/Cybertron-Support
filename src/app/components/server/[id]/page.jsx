@@ -1,7 +1,7 @@
 // In next js if you want to use route parameters(basically unique routes) we use dynamic segments, we create this segment by wrapping the folder name in square brackets eg:- [id] which tells the next js that this part of the route is dyanmic.
 
 import { notFound } from "next/navigation";
-import { connectToDatabase, ticketModel } from "../../../../db/db";
+import { ticketModel } from "../../../../db/db";
 import DeleteTicket from './DeleteTicket';
 
 // We can use static rendering this page (using cache of this page for a specified amount of time) to improve website speed & Inhanced SEO and Reduce server load.
@@ -11,53 +11,34 @@ import DeleteTicket from './DeleteTicket';
 // this variable is used when we want to return a 404 page if a pre-rendered page does not exist(setting it to false) or next js tries to search for this page incase it exists in Db(running getTicket) and if not then returns 404 page(setting it to true).
 export const dynamicParams = true;
 
-export async function generateStaticParams() {
+/* export async function generateStaticParams() {
   // Accessing the Db once
   await connectToDatabase();
-
   const tickets = await ticketModel.find();
 
   // mapping thorugh all the documents and storing an array of field "id".
   const id = tickets.map((ticket) => ({
-    id: ticket.id
+    id: ticket._id.toString()
   }))
 
-  const params = id;
-
   // returning the array with revalidation of 60 second(meaning if this api is called again before 60s cache file will be used otherwise api call is made again.)
-  // return [{
-  //   props: { id },
-  //   revalidate: 60
-  // }]
+  return id
+} */
 
-  return params;
-
-}
 // Now in the build of this app all the routes to the specific ticket will be pre-rendered improving speed of the website.
 
 async function getTicket(id) {
   //imitate delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-
-
-  const ticket = await ticketModel.findById(new mongoose.Types.ObjectId(id));
-  if (!ticket) {
-    notFound();
-  }
-  return ticket
-
   // To get back one document from the ticket collection.
-  // return await ticketModel.findById(id) || notFound();
+  return await ticketModel.findById(id) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()
 }
 
 // we can get the route parameter using params property 
 export default async function TicketDetails({ params }) {
-  const { id } = await params;
-  if (!id) {
-    notFound(); // handle page missing parameter.
-  }
-  const ticket = await getTicket(id);
+  const route = await params;
+  const ticket = await getTicket(route.id);
   return (
     <main>
       <nav>

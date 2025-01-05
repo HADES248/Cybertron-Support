@@ -1,4 +1,4 @@
-import { ticketModel } from '../../../../db/db';
+import { connectToDatabase, ticketModel } from "@/db/db";
 
 export async function POST(req) {
 
@@ -6,6 +6,7 @@ export async function POST(req) {
 
   const request = await req.json();
 
+  await connectToDatabase();
   ticketModel.create(request).then(() => {
     console.log('Ticket Added to Db');
   })
