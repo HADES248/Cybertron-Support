@@ -10,9 +10,6 @@ async function getTickets() {
 
   const res = await fetch(`${baseUrl}/components/server/find`, {
     method: "GET",
-    headers: {
-      'Content-Type': 'application/json'
-    },
     next: {
       revalidate: 0 // use 0 to opt out of using cache
     }
