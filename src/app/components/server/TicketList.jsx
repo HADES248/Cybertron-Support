@@ -3,7 +3,7 @@ import Link from "next/link";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
 async function getTickets() {
-  const res = await fetch('http://localhost:3000/components/server/find', {
+  const res = await fetch('https://cybertron-support.vercel.app/components/server/find', {
     next: {
       revalidate: 0 // use 0 to opt out of using cache
     }
