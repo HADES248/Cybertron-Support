@@ -1,8 +1,7 @@
 //import { connectToDatabase, ticketModel } from '../../../db/db'
 import Link from "next/link";
+import { notFound } from "next/navigation";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
-
-export const NEXT_PUBLIC_API_URL = 'https://cybertron-support.vercel.app';
 
 async function getTickets() {
 
@@ -13,7 +12,7 @@ async function getTickets() {
     }
   });
   if (!res.ok) {
-    throw new Error('Failed to fetch tickets')
+    notFound();
   };
 
 
