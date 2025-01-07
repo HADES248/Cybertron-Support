@@ -2,6 +2,8 @@
 import Link from "next/link";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
+export const NEXT_PUBLIC_API_URL = 'https://cybertron-support.vercel.app';
+
 async function getTickets() {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components/server/find`, {
