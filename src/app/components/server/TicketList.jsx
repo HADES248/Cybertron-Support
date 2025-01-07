@@ -4,16 +4,16 @@ import Link from "next/link";
 
 async function getTickets() {
 
-  const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
-
-
-
-  const res = await fetch(`${baseUrl}/components/server/find`, {
-    method: "GET",
-    next: {
-      revalidate: 0 // use 0 to opt out of using cache
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components/server/find`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
     }
-  })
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch tickets')
+  };
+
 
   const { tickets } = await res.json();
 

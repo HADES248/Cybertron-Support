@@ -12,7 +12,7 @@ export default function DeleteTicket(props) {
 
   const handelDelete = async () => {
     setIsLoading(true);
-    await fetch(`/components/server/:id/delete`, {
+    await fetch('/components/server/:id/delete', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
