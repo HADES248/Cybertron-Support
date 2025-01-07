@@ -1,20 +1,10 @@
 //import { connectToDatabase, ticketModel } from '../../../db/db'
 import Link from "next/link";
-import { notFound } from "next/navigation";
 // Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
 async function getTickets() {
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components/server/find`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  if (!res.ok) {
-    notFound();
-  };
-
+  const res = await fetch("https://cybertron-support.vercel.app/components/server/find");
 
   const { tickets } = await res.json();
 
