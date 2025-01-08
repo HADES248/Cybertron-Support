@@ -4,11 +4,19 @@ import Link from "next/link";
 
 async function getTickets() {
 
-  const res = await fetch("https://cybertron-support.vercel.app/components/server/find");
+  try {
+    const res = await fetch("http://localhost:3000/components/server/find", {
+      next: {
+        revalidate: 0
+      }
+    });
 
-  const { tickets } = await res.json();
+    const { tickets } = await res.json();
 
-  return tickets;
+    return tickets;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function TicketList() {
