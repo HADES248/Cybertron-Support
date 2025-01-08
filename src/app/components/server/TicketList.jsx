@@ -7,11 +7,13 @@ export async function getStaticProps() {
 
     const { tickets } = await res.json();
     return {
-      props: { tickets, }, revalidate: 10, // ISR
+      props: {
+        tickets
+      }, revalidate: 10, // ISR
     };
   } catch (error) {
     console.log(error);
-    return { props: { tickets: [], }, };
+    return { props: { tickets: [] } };
   }
 }
 
