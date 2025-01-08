@@ -7,7 +7,7 @@ export async function getStaticProps() {
 
     const { tickets } = await res.json();
     return {
-      props: { tickets, }, revalidate: 0, // ISR
+      props: { tickets, }, revalidate: 10, // ISR
     };
   } catch (error) {
     console.log(error);
