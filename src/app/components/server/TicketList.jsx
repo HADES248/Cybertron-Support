@@ -11,7 +11,7 @@ async function getTickets() {
   await new Promise(resolve => setTimeout(resolve, 1000));
   await connectToDatabase();
 
-  const tickets = await ticketModel.find({});
+  const tickets = await ticketModel.find();
 
   return tickets;
 }
