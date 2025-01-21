@@ -20,8 +20,17 @@ const ticketSchema = new Schema({
 export const ticketModel = mongoose.models.ticket || mongoose.model('ticket', ticketSchema);
 
 // Connecting to Db
+
+let isConnected;
+
 export async function connectToDatabase() {
-  await mongoose.connect(mongoURI).then(() => {
-    console.log('Connected to Db');
-  }).catch(err => err);
+  if (isConnected) {
+    console.log('Already Connected');
+    return;
+  } else {
+    await mongoose.connect(mongoURI).then(() => {
+      isConnected = true;
+      console.log('Connected to Db');
+    }).catch(err => err);
+  }
 }
