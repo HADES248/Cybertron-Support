@@ -7,7 +7,7 @@ export async function POST(req) {
   const request = await req.json();
 
   await connectToDatabase();
-  ticketModel.create(request).then(() => {
+  await ticketModel.create(request).then(() => {
     console.log('Ticket Added to Db');
   })
 
