@@ -7,6 +7,14 @@ const mongoURI = 'mongodb+srv://Shiva:ShivanshSingh@mongodb.3e7nf.mongodb.net/He
 // Define a schema and model for the 'tickets' collection, otherwise we won't be able to use ticket.id, ticket.title etc.
 const Schema = mongoose.Schema;
 
+const userSchema = mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+});
+
+export const userModel = mongoose.models.user || mongoose.model('user', userSchema);
+
 // Designing Schema based on json file
 const ticketSchema = new Schema({
   id: String,
