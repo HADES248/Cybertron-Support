@@ -1,6 +1,8 @@
 'use client';
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../../context/UserContext";
+
 
 export default function SignUp() {
 
@@ -10,6 +12,8 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  
+  const {setUser} = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +23,8 @@ export default function SignUp() {
       email,
       password
     };
+
+    setUser(newUser);
 
     await fetch('/components/signUp/create', {
       method: 'POST',

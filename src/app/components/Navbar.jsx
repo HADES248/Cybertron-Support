@@ -1,9 +1,16 @@
-"use client";
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "./next-app-logo.png";
+import React, { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 export default function Navbar() {
+
+  const { user } = useContext(UserContext);
+
+  if (!user) console.log('Please Sign Up!');
+  else console.log('Welcome ', user.username);
 
   const viewLinks = () => {
     const links = document.querySelector('#navlinks');
@@ -30,9 +37,15 @@ export default function Navbar() {
         <Link className="block md:inline-block pl-6" href={'/components/server'}>Tickets</Link>
         <Link className="block md:inline-block pl-6" href={'/components/client'}>Create</Link>
       </div>
-      <Link className="absolute ml-28 md:right-0" href={'/components/signUp'}>
-        <button className="btn-primary">SignUp</button>
-      </Link>
+      {
+        user ? (
+          <h1 className="absolute ml-28 md:right-0">Welcome {user.username}</h1>
+        ) : (
+          <Link className="absolute ml-28 md:right-0" href={'/components/signUp'}>
+            <button className="btn-primary">SignUp</button>
+          </Link>
+        )
+      }
       <div className="absolute block md:hidden right-0 cursor-pointer" onClick={viewLinks}>
         <svg className="size-6 transition ease-in-out duration-300" id="burger" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
