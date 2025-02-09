@@ -24,8 +24,6 @@ export default function SignUp() {
       password
     };
 
-    setUser(newUser);
-
     await fetch('/components/signUp/create', {
       method: 'POST',
       headers: {
@@ -39,6 +37,7 @@ export default function SignUp() {
         setPassword('');
         setLoading(false);
 
+        setUser(newUser);
         router.push('/');
       }
     })

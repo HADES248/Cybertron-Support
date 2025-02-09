@@ -9,9 +9,6 @@ export default function Navbar() {
 
   const { user } = useContext(UserContext);
 
-  if (!user) console.log('Please Sign Up!');
-  else console.log('Welcome ', user.username);
-
   const viewLinks = () => {
     const links = document.querySelector('#navlinks');
     const burger = document.querySelector('#burger');
@@ -30,7 +27,7 @@ export default function Navbar() {
   return (
     <nav className="relative md:pb-4">
       <Image src={Logo} alt="Helpdesk" width={80} quality={100} placeholder="blur" />
-      <div className="absolute right-0 top-20 text-right hidden md:inline-block md:left-16 md:top-8 md:right-auto" id="navlinks">
+      <div className="absolute right-0 top-16 text-right hidden md:inline-block md:left-16 md:top-8 md:right-auto" id="navlinks">
         <h1 className="block md:inline-block pl-6">Cybertron Support</h1>
         {/* Using Link Component of next (as next pre-fetches the page in the background when it sees the link component) */}
         <Link className="block md:inline-block pl-6" href={'/'}>Dashboard</Link>
@@ -39,9 +36,9 @@ export default function Navbar() {
       </div>
       {
         user ? (
-          <h1 className="absolute ml-28 md:right-0">Welcome {user.username}</h1>
+          <h2 className="absolute ml-24 top-8 md:right-0">Welcome! {user.username.split(" ")[0]}</h2>
         ) : (
-          <Link className="absolute ml-28 md:right-0" href={'/components/signUp'}>
+          <Link className="absolute ml-24 md:right-0" href={'/components/signUp'}>
             <button className="btn-primary">SignUp</button>
           </Link>
         )
