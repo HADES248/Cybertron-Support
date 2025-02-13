@@ -1,14 +1,12 @@
-'use client';
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
-import UserContext from "../../context/UserContext";
+'use client'
+import React, { useContext, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import UserContext from '../../context/UserContext'
+import Link from 'next/link'
 
-
-export default function SignUpForm() {
+function LoginForm() {
 
   const router = useRouter();
-
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,28 +16,28 @@ export default function SignUpForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const newUser = {
-      username,
+
+    const userDetails = {
       email,
       password
     };
 
-    await fetch('/components/signUp/create', {
+    await fetch('/components/login/find', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(userDetails)
     }).then((response) => {
       if (response.ok) {
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setLoading(false);
-
-        setUser(newUser);
-        localStorage.setItem('user', JSON.stringify(newUser));
-        router.push('/');
+        response.json().then((data) => {
+          setEmail('');
+          setPassword('');
+          setLoading(false);
+          setUser(data.user);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          router.push('/');
+        })
       } else {
         response.json().then((data) => {
           alert(data.message);
@@ -52,11 +50,6 @@ export default function SignUpForm() {
   return (
     <form onSubmit={handleSubmit} className="w-1/2">
       <label>
-        <span>Username:</span>
-        {/* Setting value={title} in the input tag ensures the input field is always synced with the state title */}
-        <input required type="text" onChange={(e) => { setUsername(e.target.value) }} value={username} />
-      </label>
-      <label>
         <span>Email:</span>
         <input required type="email" onChange={(e) => { setEmail(e.target.value) }} value={email} />
       </label>
@@ -66,9 +59,13 @@ export default function SignUpForm() {
       </label>
       <button className="btn-primary mt-6">
         {loading ?
-          <span>Signing Up...</span> :
-          <span>Sign Up</span>}
+          <span>Loging In...</span> :
+          <span>Log In</span>}
       </button>
+      <p className="mt-4 text-center">Don&apos;t have an account? <Link className="text-primary no-underline"
+        href={"./signUp"}>Sign Up</Link></p>
     </form>
   )
 }
+
+export default LoginForm

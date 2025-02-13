@@ -77,7 +77,7 @@ export default function CreateForm() {
               <span>Adding...</span> :
               <span>Add Ticket</span>}
           </button>
-        </form> : <center><h1>Please Sign up to create a ticket</h1></center>}
+        </form> : <center><h1>Please Log In to create a ticket</h1></center>}
     </>
   )
 }

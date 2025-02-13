@@ -24,8 +24,14 @@ export default function Navbar() {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    // To reload the page after loging out.
+    window.location.reload();
+  }
+
   return (
-    <nav className="relative md:pb-4">
+    <nav className="relative align-center md:pb-4">
       <Image src={Logo} alt="Helpdesk" width={80} quality={100} placeholder="blur" />
       <div className="absolute right-0 top-16 text-right hidden md:inline-block md:left-16 md:top-8 md:right-auto" id="navlinks">
         <h1 className="block md:inline-block pl-6">Cybertron Support</h1>
@@ -36,11 +42,19 @@ export default function Navbar() {
       </div>
       {
         user ? (
-          <h2 className="absolute ml-24 top-8 md:right-0">Welcome! {user.username.split(" ")[0]}</h2>
+          <>
+            <h2 className="absolute ml-44 md:right-40">Welcome! {user.username.split(" ")[0]}</h2>
+            <p className="absolute ml-24 md:right-20 hover:cursor-pointer" onClick={handleLogout}>Log Out</p>
+          </>
         ) : (
-          <Link className="absolute ml-24 md:right-0" href={'/components/signUp'}>
-            <button className="btn-primary">SignUp</button>
-          </Link>
+          <>
+            <Link className="absolute ml-24 top-8 md:right-0" href={'/components/signUp'}>
+              <h2>Sign Up</h2>
+            </Link>
+            <Link className="absolute ml-44 top-8 md:right-20" href={'/components/login'}>
+              <h2>Log In</h2>
+            </Link>
+          </>
         )
       }
       <div className="absolute block md:hidden right-0 cursor-pointer" onClick={viewLinks}>

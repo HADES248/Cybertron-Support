@@ -8,16 +8,26 @@ const mongoURI = 'mongodb+srv://Shiva:ShivanshSingh@mongodb.3e7nf.mongodb.net/He
 const Schema = mongoose.Schema;
 
 const userSchema = mongoose.Schema({
-  username: String,
-  email: String,
-  password: String,
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true
+  }
 });
 
 export const userModel = mongoose.models.user || mongoose.model('user', userSchema);
 
 // Designing Schema based on json file
 const ticketSchema = new Schema({
-  id: String,
   title: String,
   body: String,
   priority: String,

@@ -16,11 +16,11 @@ export default function Home() {
 
       <div className="card">
         <h3>New member of the web dev team...</h3>
-        <p>We're excited to welcome a new addition to our development team! Please join us in welcoming Bumblebee to Cybertron. With extensive experience in User-testing, Bumblebee brings a wealth of knowledge and fresh perspectives to our projects.</p>
+        <p>We&apos;re excited to welcome a new addition to our development team! Please join us in welcoming Bumblebee to Cybertron. With extensive experience in User-testing, Bumblebee brings a wealth of knowledge and fresh perspectives to our projects.</p>
       </div>
       <div className="card">
         <h3>New website live!</h3>
-        <p>Exciting news! We're thrilled to announce the launch of the Cybertron Helpdesk, your one-stop solution for all support needs. Designed with cutting-edge technology and user-friendly features, the Cybertron Helpdesk is here to revolutionize the way you access assistance.</p>
+        <p>Exciting news! We&apos;re thrilled to announce the launch of the Cybertron Helpdesk, your one-stop solution for all support needs. Designed with cutting-edge technology and user-friendly features, the Cybertron Helpdesk is here to revolutionize the way you access assistance.</p>
       </div>
     </main>
   );
