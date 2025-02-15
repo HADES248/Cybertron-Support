@@ -1,40 +1,72 @@
-import { connectToDatabase, ticketModel } from "@/db/db";
-import { cookies } from "next/headers";
+'use client';
+import React, { useContext, useEffect, useState } from "react";
+import UserContext from "@/app/context/UserContext";
 import Link from "next/link";
-// Important points:- 1. All of this code is server side component meaning this page is fully loaded before reaching the browser
 
-async function getTickets() {
+export default function TicketList() {
 
-  cookies(); // This next js function is used to let next js know to render this page dynamically.
+  const { user } = useContext(UserContext);
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  //imitate delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  await connectToDatabase();
+  useEffect(() => {
 
-  const tickets = await ticketModel.find();
+    async function getTickets() {
+      setLoading(true);
+      if (user) {
+        await fetch('/components/server/find', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: user.email })
+        }).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              setTickets(data.tickets);
+              setLoading(false);
+            })
+          }
+        })
+      }
+    }
+    getTickets();
+  }, [user]);
 
-  return tickets;
-}
-
-export default async function TicketList() {
-  // Creating an Instance of the function to get all the tickets.
-  const tickets = await getTickets();
   return (
     <>
-      {tickets.length === 0 ? (
-        <p className="text-center">There are no Tickets!!</p>
-      ) :
-        // Generating dynamic code using tickets array
-        tickets.map((ticket) => (
-          <div key={ticket._id} className="card my-5">
-            {/* // Adding link to redirect to ticket details. */}
-            <Link href={`/components/server/${ticket._id}`}>
-              <h3>{ticket.title}</h3>
-              <p>{ticket.body.slice(0, 200)}...</p>
-              <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
-            </Link>
-          </div>
-        ))
+      {loading ? (
+        <p className="text-center">Please wait while we Load the tickets</p>
+      ) : (
+        <>
+          {
+            tickets.length === 0 ? (
+              <>
+                <p className="ml-1 text-center">No tickets found</p>
+                <Link href={'../components/client'} >
+                  <p className="text-primary no-underline text-center text-lg">create one?</p>
+                </Link>
+              </>
+            ) : (
+              <>
+                {
+                  // Generating dynamic code using tickets array
+                  tickets.map((ticket) => (
+                    <div key={ticket._id} className="card my-5">
+                      {/* // Adding link to redirect to ticket details. */}
+                      <Link href={`/components/server/${ticket._id}`}>
+                        <h3>{ticket.title}</h3>
+                        <p>{ticket.body.slice(0, 200)}...</p>
+                        <div className={`pill ${ticket.priority}`}>{ticket.priority} priority</div>
+                      </Link>
+                    </div>
+                  ))
+                }
+              </>
+            )
+          }
+        </>
+      )
       }
     </>
   );

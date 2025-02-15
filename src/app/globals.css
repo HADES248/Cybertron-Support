@@ -4,42 +4,39 @@
 
 /* base styles */
 
-/* @apply basically a tailwind directive that means that to apply these tailwind classes to the selected HTML component */
+/* @apply is a Tailwind directive to apply classes to the selected HTML component */
 
 body {
-  background: #ebf0fa;
-  @apply text-gray-500 m-8;
+  @apply m-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white min-h-screen;
 }
 
-h1,
+h1 {
+  @apply font-bold text-white text-2xl;
+}
+
 h2 {
-  @apply font-bold text-primary text-lg;
+  @apply font-bold text-white text-lg;
 }
 
 main {
-  @apply max-w-5xl my-12 mx-auto px-8;
+  @apply max-w-5xl my-12 mx-auto px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 p-8 rounded-lg shadow-lg;
 }
 
-main>h2 {
-  @apply mb-4 pb-2 text-base;
+main > h2 {
+  @apply mb-4 pb-2 border-b-2 border-indigo-300;
 }
 
-p>a {
-  @apply text-primary underline;
+p > a {
+  @apply text-teal-300 underline hover:text-teal-500;
 }
 
 /* nav styles */
 nav {
-  @apply pb-4 border-b-2 border-gray-200 flex items-center gap-5 my-10 mx-auto max-w-5xl;
+  @apply pb-4 border-b-2 border-gray-300 flex items-center gap-5 my-10 mx-auto max-w-5xl;
 }
 
-nav a,
-nav span {
-  @apply text-gray-500;
-}
-
-nav a:hover {
-  @apply text-black;
+nav a, nav span {
+  @apply text-gray-200 hover:text-white transition duration-300;
 }
 
 main nav {
@@ -48,7 +45,7 @@ main nav {
 
 /* button styles */
 button {
-  @apply px-3 py-2 rounded-sm flex justify-between items-center gap-2 text-sm;
+  @apply px-4 py-2 rounded-md flex justify-between items-center gap-3;
 }
 
 button:hover {
@@ -56,26 +53,24 @@ button:hover {
 }
 
 .btn-primary {
-  @apply bg-primary text-white;
+  @apply bg-gradient-to-r from-green-400 to-blue-500 text-white;
 }
 
 .btn-secondary {
-  @apply bg-gray-200 text-gray-900;
+  @apply bg-gradient-to-r from-gray-300 to-gray-400 text-gray-900 hover:bg-gradient-to-l;
 }
 
 /* form styles */
 form {
-  @apply py-4 px-7 bg-primary bg-opacity-5 rounded-md block mx-auto min-w-fit w-1/4;
+  @apply py-6 px-8 bg-gradient-to-br from-purple-600 to-purple-800 bg-opacity-90 rounded-md block mx-auto min-w-fit w-1/3;
 }
 
 form label {
-  @apply block;
+  @apply block text-teal-200;
 }
 
-form input,
-form textarea,
-form select {
-  @apply block mt-2 my-4 px-2 py-1 rounded-sm w-full;
+form input, form textarea, form select {
+  @apply block mt-2 my-4 px-3 py-2 rounded-md w-full bg-gray-800 text-white;
 }
 
 form button {
@@ -84,37 +79,37 @@ form button {
 
 /* feedback styles */
 .error {
-  @apply border-2 border-red-500 bg-red-300 text-red-800 py-1 px-2 rounded-sm block max-w-fit my-4 mx-auto;
+  @apply border-2 border-red-500 bg-red-500 text-white py-2 px-3 rounded-md block max-w-fit my-4 mx-auto;
 }
 
 /* card styles */
 .card {
-  @apply bg-white shadow-sm rounded-md py-3 px-4 my-4 relative overflow-hidden;
+  @apply bg-gray-800 shadow-md rounded-lg py-4 px-5 my-5 relative overflow-hidden;
 }
 
 .card h3 {
-  @apply font-bold text-gray-700 text-sm mb-0;
+  @apply font-bold text-gray-200 text-lg mb-2;
 }
 
 .card p {
-  @apply my-4 text-sm leading-6;
+  @apply my-3 text-sm text-gray-300 leading-6;
 }
 
 /* pill styles */
 .pill {
-  @apply py-1 px-2 mt-3 inline-block text-xs font-semibold;
+  @apply py-2 px-3 mt-3 inline-block text-sm font-semibold rounded-full;
 }
 
 .pill.high {
-  @apply bg-red-300 text-red-600;
+  @apply bg-red-500 text-white;
 }
 
 .pill.medium {
-  @apply bg-blue-300 text-blue-600;
+  @apply bg-blue-500 text-white;
 }
 
 .pill.low {
-  @apply bg-emerald-300 text-emerald-600;
+  @apply bg-green-500 text-white;
 }
 
 .card .pill {

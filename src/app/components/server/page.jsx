@@ -7,10 +7,14 @@ export default async function Tickets() {
   // Server component by default runs on the server.
   return (
     <main>
+      <div className="card">
+        <h3>What are Tickets?</h3>
+        <p>Tickets are digital records used to track and manage user inquiries, issues, or requests. When a user submits a query or problem, a ticket is generated with a unique ID and relevant information such as the user&apos;s details, the nature of the issue, and it&apos;s priority. Helpdesk agents can then prioritize, assign, and resolve these tickets, ensuring efficient support and communication. Tickets help maintain a clear record of interactions and streamline the troubleshooting process for both users and support staff.</p>
+      </div>
       <nav>
         <div>
-          <h2>Tickets</h2>
-          <p><small>Currently open Tickets.</small></p>
+          <h2>Currently Open Tickets...
+          </h2>
         </div>
       </nav>
 
@@ -18,7 +22,6 @@ export default async function Tickets() {
       <Suspense fallback={<Loading />}>
         <TicketList />
       </Suspense>
-
     </main>
   )
 }
