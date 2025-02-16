@@ -10,7 +10,6 @@ export default function TicketList() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-
     async function getTickets() {
       setLoading(true);
       if (user) {
@@ -28,15 +27,21 @@ export default function TicketList() {
             })
           }
         })
+      } else {
+          setLoading(false);
       }
     }
     getTickets();
   }, [user]);
 
+  tickets.map((ticket) => {
+    console.log(ticket._id)
+  })
+
   return (
     <>
       {loading ? (
-        <p className="text-center">Please wait while we Load the tickets</p>
+        <p className="text-center">Please wait...</p>
       ) : (
         <>
           {
