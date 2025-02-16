@@ -43,15 +43,15 @@ export default function Navbar() {
       {
         user ? (
           <>
-            <h2 className="absolute ml-44 top-8 lg:right-20">Welcome! {user.username.split(" ")[0]}</h2>
-            <p className="absolute ml-24 top-9 lg:right-2 hover:cursor-pointer" onClick={handleLogout}>Log Out</p>
+            <h2 className="absolute ml-36 top-8 lg:right-20">Welcome! <span className="block xsm:inline-block text-white">{user.username.split(" ")[0]}</span></h2>
+            <p className="absolute ml-20 top-9 lg:right-2 hover:cursor-pointer" onClick={handleLogout}>Log Out</p>
           </>
         ) : (
           <>
-            <Link className="absolute ml-24 top-8 text-sm lg:right-2" href={'/components/signUp'}>
+            <Link className="absolute ml-20 top-8 text-sm lg:right-2" href={'/components/signUp'}>
               <h2>Sign Up</h2>
             </Link>
-            <Link className="absolute ml-48 top-8 lg:right-24" href={'/components/login'}>
+            <Link className="absolute ml-40 top-8 lg:right-24" href={'/components/login'}>
               <h2>Log In</h2>
             </Link>
           </>

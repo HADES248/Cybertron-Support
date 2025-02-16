@@ -11,6 +11,9 @@ export default {
       // Adding our own theme color using tailwind CSS, This color will be added to the property name primary.
       colors: {
         primary: '#7856ff'
+      },
+      screens: {
+        xsm: '400px'
       }
     },
   },
