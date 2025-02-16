@@ -1,13 +1,15 @@
 // In next js if you want to use route parameters(basically unique routes) we use dynamic segments, we create this segment by wrapping the folder name in square brackets eg:- [id] which tells the next js that this part of the route is dyanmic.
 
 import { notFound } from "next/navigation";
-import { ticketModel } from "../../../../db/db";
+import { connectToDatabase, ticketModel } from "../../../../db/db";
 import DeleteTicket from './DeleteTicket';
 
 async function getTicket(id) {
   //imitate delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   // To get back one document from the ticket collection.
+  await connectToDatabase();
+  
   return await ticketModel.findOne({ _id: id }) || notFound();
   // If the document does not exist we can send a 404 page using this notFound()
 }
